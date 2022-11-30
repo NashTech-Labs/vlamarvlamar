@@ -1,0 +1,32 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                                       controllers.MainController.index()
+OPTIONS /                                       controllers.MainController.options(path = "")
+OPTIONS /*path                                  controllers.MainController.options(path)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                           controllers.Assets.versioned(path="/public", file: Asset)
+
+
+POST    /api/v1/payment/intent                  controllers.PaymentController.createPaymentIntent()
+POST    /api/v1/payment/intent/ephemeral        controllers.PaymentController.createPaymentIntentWithEphemeralKey()
+
+GET     /api/v1/plans/:postalCode               controllers.PlansController.getPlans(postalCode: String)
+
+GET     /api/v1/postal-codes/:postalCode        controllers.PostalCodesController.getStatusForPostalCode(postalCode: String)
+
+POST    /api/v1/register/basic                  controllers.UsersController.registerBasic()
+POST    /api/v1/register/details                controllers.UsersController.registerDetails()
+
+POST    /api/v1/register                        controllers.UsersController.register()
+
+POST    /api/v1/waitlist-users                  controllers.WaitlistController.addWaitlistUser()
+GET     /api/v1/waitlist-users/:email           controllers.WaitlistController.getWaitlistUser(email: String)
+POST    /api/v1/waitlist_users/referral_code    controllers.WaitlistController.applyUserReferral()
+
+GET     /api/v1/countdown                       controllers.WaitlistController.getCountdown()
+GET     /api/v1/countdowns                      controllers.WaitlistController.getCountdowns()
